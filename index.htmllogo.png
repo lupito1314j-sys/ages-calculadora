@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AGES Calculadora</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial;
+background:#f2f2f2;
+}
+.dark{background:#121212;color:#fff;}
+.container{
+max-width:420px;
+margin:auto;
+background:white;
+min-height:100vh;
+padding:20px;
+}
+.dark .container{background:#1e1e1e;}
+
+img{width:200px;display:block;margin:auto;}
+input,button{
+width:100%;
+padding:14px;
+font-size:18px;
+margin-top:12px;
+}
+button{background:black;color:white;border:none;}
+table{width:100%;margin-top:20px;border-collapse:collapse;}
+td,th{border:1px solid #ccc;padding:10px;text-align:center;}
+.footer{text-align:center;margin-top:20px;font-size:14px;}
+</style>
+</head>
+
+<body>
+<div class="container">
+<img src="logo.png">
+
+<button onclick="modo()">🌙 Modo oscuro</button>
+
+<input id="material" type="number" placeholder="Costo material">
+<input id="mano" type="number" placeholder="Mano de obra">
+
+<button onclick="calcular()">CALCULAR</button>
+
+<table>
+<tr><th>%</th><th>Precio</th><th></th></tr>
+<tr><td>70%</td><td id="g70"></td><td><button onclick="copiar('g70')">Copiar</button></td></tr>
+<tr><td>80%</td><td id="g80"></td><td><button onclick="copiar('g80')">Copiar</button></td></tr>
+<tr><td>90%</td><td id="g90"></td><td><button onclick="copiar('g90')">Copiar</button></td></tr>
+<tr><td>100%</td><td id="g100"></td><td><button onclick="copiar('g100')">Copiar</button></td></tr>
+<tr><td>110%</td><td id="g110"></td><td><button onclick="copiar('g110')">Copiar</button></td></tr>
+</table>
+
+<div class="footer">
+AGES – Artes Gráficas Estilo y Servicio
+</div>
+</div>
+
+<script>
+function calcular(){
+let m=Number(material.value||0);
+let mo=Number(mano.value||0);
+let t=m+mo;
+g70.innerText="$"+(t*1.7).toFixed(2);
+g80.innerText="$"+(t*1.8).toFixed(2);
+g90.innerText="$"+(t*1.9).toFixed(2);
+g100.innerText="$"+(t*2).toFixed(2);
+g110.innerText="$"+(t*2.1).toFixed(2);
+}
+
+function copiar(id){
+navigator.clipboard.writeText(document.getElementById(id).innerText);
+alert("Precio copiado");
+}
+
+function modo(){
+document.body.classList.toggle("dark");
+}
+</script>
+</body>
+</html>
